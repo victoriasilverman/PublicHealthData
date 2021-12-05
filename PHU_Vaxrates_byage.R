@@ -23,7 +23,11 @@ PHU.data.t<-as_tibble(PHUdata) %>% #convert it to a tibble
   arrange(-age5_11)%>%
   rename( "05-11yrs"= age5_11)  #rename columns
 
+#output table if want to use other vis software EDIT THIS LINE
+write.csv(PHU.data.t,"Path to export the DataFrame\\File Name.csv", row.names = FALSE)
+
  
+#create colour coded table
   formattable(PHU.data.t, list(
     "05-11yrs" = color_tile("red", "blue"),
     "12-17yrs" = color_tile("red", "blue"),
