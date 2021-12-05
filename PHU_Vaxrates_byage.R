@@ -38,8 +38,6 @@ write.csv(PHU.data.t,"Path to export the DataFrame\\File Name.csv", row.names = 
     "70-79yrs" = color_tile("red", "blue"),   
     "60-69yrs" = color_tile("red", "blue"),
     "80+"  = color_tile("red", "blue"),
-    "18+" = color_tile("red", "blue"),
-    "12+"  = color_tile("red", "blue"),
     "5+" = color_tile("red", "blue"),
     Cosigned = formatter("span",
                          style = x ~ style(display = "block",
