@@ -561,33 +561,3 @@ ggplot(PHU.data.g) +
   coord_flip() +labs(title="3rd dose % 50+", x="Public Health Unit",y= "Percentage with THREE doses", subtitle="by Victoria Silverman, 2022-01-07", caption= "Data from OnGov, vertical line at 33%")+
   theme_minimal()+  theme(plot.subtitle=element_text(size=7, hjust=0.5, face="italic", color="black"))+theme(legend.position="none", plot.caption=element_text(size=7, hjust=0.5, color="black")) +  geom_hline(yintercept= c(33),color='#871d20',size=1)
 
-
-
-
-
-
-
-
-
-  
-
-#Rt estimation
-
-OttawaCase<- read.csv("/Users/Victoria/Documents/Victoria/Fun Stuff/COVID-19_Cases_and_Deaths_in_Ottawa_20211208.csv")
-Ottawa.case.t<-as_tibble(PHUCase) %>% #convert it to a tibble
-  select(Date, Daily_Cases_by_Reported_Date)%>%
-  mutate_if(is.integer, ~replace(., is.na(.), 0)) %>%   
-  rename(I = Daily_Cases_by_Reported_Date)  #rename columns
-
-location <-rep("local", length=(nrow(Ottawa.case.t)))
-
-incid <- incidence(Ottawa.case.t$I, groups = location)
-
-
-res_parametric_si <- estimate_R(incid, 
-                                method="parametric_si",
-                                config = make_config(list(
-                                  mean_si = 2.9, 
-                                  std_si = 1.5)))
-
-
